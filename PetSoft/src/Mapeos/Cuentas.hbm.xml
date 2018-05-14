@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="Clases.Cuentas" table="cuentas" >
+      <id name="Usuario" type="string"/>
+      <property name="Contraseña" />
+      <property name="Pregunta" column="Pregunta_sec" />
+      <property name="Respuesta" column="Resp_sec" />
+    </class>
+</hibernate-mapping>

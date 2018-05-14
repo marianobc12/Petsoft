@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="Clases.Mascotas" table="mascotas" >
+      <id name="ID" type="integer"/>
+      <property name="Dni" />
+      <property name="Nombre" />
+      <property name="Especie" />
+      <property name="Raza" />
+      <property name="Sexo" />
+      <property name="Edad" />
+      <property name="ID_historia" />
+    </class>
+</hibernate-mapping>

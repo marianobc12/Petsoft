@@ -29,8 +29,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
 
 -- Dumping data for table veterinaria_bd.clientes: ~2 rows (approximately)
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` (`Dni`, `NomyApe`, `Fecha_nac`, `Ciudad`, `Domicilio`, `Telefono`) VALUES
-	(40714396, 'mariano flores', '24/10/1997', 'la plata ', '120 y 65', '4253165');
+
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 
 -- Dumping structure for table veterinaria_bd.cuentas
@@ -46,7 +45,6 @@ CREATE TABLE IF NOT EXISTS `cuentas` (
 /*!40000 ALTER TABLE `cuentas` DISABLE KEYS */;
 INSERT INTO `cuentas` (`Usuario`, `Contraseña`, `Pregunta_sec`, `Resp_sec`) VALUES
 	('mariano', '1234ya', '¿Segundo Nombre?', 'leandro');
-	('martin', '1234', '¿Calle?', '515');
 /*!40000 ALTER TABLE `cuentas` ENABLE KEYS */;
 
 -- Dumping structure for table veterinaria_bd.historias

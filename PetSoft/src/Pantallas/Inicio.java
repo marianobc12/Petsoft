@@ -189,7 +189,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(740, 450));
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(-1, -9, 750, 470);
+        jLabel1.setBounds(-1, -9, 750, 480);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

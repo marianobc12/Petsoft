@@ -94,19 +94,21 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Vijaya", 0, 120)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("PetSoft");
+        jLabel2.setToolTipText("");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(180, 30, 400, 100);
+        jLabel2.setBounds(10, 0, 740, 100);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Usuario");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(270, 150, 48, 17);
+        jLabel3.setBounds(280, 110, 48, 17);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario.png"))); // NOI18N
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(270, 170, 30, 30);
+        jLabel5.setBounds(280, 130, 30, 30);
 
         txt_usuario.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txt_usuario.setToolTipText("Ingrese su nombre usuario");
@@ -116,17 +118,17 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txt_usuario);
-        txt_usuario.setBounds(300, 170, 160, 30);
+        txt_usuario.setBounds(310, 130, 160, 30);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Contraseña");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(270, 220, 74, 17);
+        jLabel4.setBounds(280, 180, 74, 17);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/contraseña.png"))); // NOI18N
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(270, 240, 30, 30);
+        jLabel6.setBounds(280, 200, 30, 30);
 
         txt_contraseña.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txt_contraseña.setToolTipText("Ingrese su contraseña");
@@ -136,7 +138,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txt_contraseña);
-        txt_contraseña.setBounds(300, 240, 160, 30);
+        txt_contraseña.setBounds(310, 200, 160, 30);
 
         bt_entrar.setBackground(new java.awt.Color(0, 204, 51));
         bt_entrar.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -153,7 +155,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         jPanel1.add(bt_entrar);
-        bt_entrar.setBounds(250, 300, 250, 50);
+        bt_entrar.setBounds(260, 260, 250, 50);
 
         bt_recuperar.setBackground(new java.awt.Color(255, 51, 51));
         bt_recuperar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -168,20 +170,20 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         jPanel1.add(bt_recuperar);
-        bt_recuperar.setBounds(250, 360, 250, 50);
+        bt_recuperar.setBounds(260, 320, 250, 50);
 
         hechopor.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         hechopor.setForeground(new java.awt.Color(255, 255, 255));
-        hechopor.setText("Desarrollado por MuthanDevs");
+        hechopor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/autor sistema.png"))); // NOI18N
         hechopor.setToolTipText("¡Presiona para ir a nuestra pagina web!");
-        hechopor.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        hechopor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hechopor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 hechoporMouseClicked(evt);
             }
         });
         jPanel1.add(hechopor);
-        hechopor.setBounds(310, 430, 150, 20);
+        hechopor.setBounds(300, 390, 180, 54);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N

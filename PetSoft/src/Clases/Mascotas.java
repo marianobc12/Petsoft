@@ -33,20 +33,17 @@ public class Mascotas implements Serializable{
     private String Sexo;
     @Column(name = "Edad")
     private int Edad;
-    @Column(name = "ID_historia")
-    private int ID_historia;
 
     public Mascotas() {
     }
     
-    public Mascotas(int Dni,String Nombre,String Especie,String Raza,String Sexo,int Edad,int ID_historia){
+    public Mascotas(int Dni,String Nombre,String Especie,String Raza,String Sexo,int Edad){
         this.Dni=Dni;
         this.Nombre=Nombre;
         this.Especie=Especie;
         this.Raza=Raza;
         this.Sexo=Sexo;
         this.Edad=Edad;
-        this.ID_historia=ID_historia;
     }
     /**
      * @return the Dni
@@ -146,19 +143,6 @@ public class Mascotas implements Serializable{
         this.ID = ID;
     }
 
-    /**
-     * @return the ID_historia
-     */
-    public int getID_historia() {
-        return ID_historia;
-    }
-
-    /**
-     * @param ID_historia the ID_historia to set
-     */
-    public void setID_historia(int ID_historia) {
-        this.ID_historia = ID_historia;
-    }
     
     
 }

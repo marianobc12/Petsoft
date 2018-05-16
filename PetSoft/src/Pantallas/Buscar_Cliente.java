@@ -5,6 +5,12 @@
  */
 package Pantallas;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Flores
@@ -29,7 +35,7 @@ public class Buscar_Cliente extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        dni_tx = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
@@ -46,9 +52,9 @@ public class Buscar_Cliente extends javax.swing.JFrame {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(50, 40, 260, 46);
 
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(50, 140, 250, 40);
+        dni_tx.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jPanel1.add(dni_tx);
+        dni_tx.setBounds(50, 140, 250, 40);
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -56,14 +62,19 @@ public class Buscar_Cliente extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar cliente.png"))); // NOI18N
         jButton1.setText("Buscar");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
         jButton1.setBounds(300, 140, 130, 40);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("D.N.I");
+        jLabel1.setText("Ingresar D.N.I");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(50, 110, 30, 17);
+        jLabel1.setBounds(50, 110, 170, 17);
 
         jButton4.setBackground(new java.awt.Color(0, 0, 0));
         jButton4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -104,6 +115,30 @@ public class Buscar_Cliente extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            int dni=Integer.valueOf(dni_tx.getText());
+            System.out.println(dni);
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection link = DriverManager.getConnection("jdbc:mysql://localhost/veterinaria_bd","root","root");
+            PreparedStatement stmt=link.prepareStatement("SELECT Dni FROM clientes WHERE Dni='"+dni+"'");
+            ResultSet rs=stmt.executeQuery();
+            int dnibd = 0;
+            while (rs.next()) {                
+                dnibd=rs.getInt("Dni");
+                System.out.println(dnibd);
+            }
+            if (dnibd==dni) {
+                Datos_Clientes Datos_Clientes=new Datos_Clientes();
+                Datos_Clientes.setVisible(true);
+                this.setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(null, "¡El cliente no existe!", "Aviso", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -140,12 +175,12 @@ public class Buscar_Cliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JTextField dni_tx;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

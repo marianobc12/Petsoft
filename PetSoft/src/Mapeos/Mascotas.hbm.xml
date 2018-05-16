@@ -10,6 +10,5 @@
       <property name="Raza" />
       <property name="Sexo" />
       <property name="Edad" />
-      <property name="ID_historia" />
     </class>
 </hibernate-mapping>

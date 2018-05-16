@@ -6,10 +6,8 @@
 package Pantallas;
 import Clases.Clientes;
 import Clases.Mascotas;
-import Clases.Historias;
 import controlador.ClientesDAO;
 import controlador.MascotasDAO;
-import controlador.HistoriaDAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -247,27 +245,7 @@ public class Alta_Mascota extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        
-        
-        
-        
-        try {
-            
-            Historias historias=new Historias();
-            HistoriaDAO historiasDAO=new HistoriaDAO();
-            historiasDAO.guardaHistoria(historias);
-            
-            
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection link = DriverManager.getConnection("jdbc:mysql://localhost/veterinaria_bd","root","root");
-            PreparedStatement stmt=link.prepareStatement("SELECT  * FROM historias ORDER BY ID_historia ASC");
-            ResultSet rs=stmt.executeQuery();
-            int ID_historia = 0;
-            while (rs.next()) {                
-                ID_historia=rs.getInt("ID_historia");
-            }
-            
-            
+ 
             Clientes clientes=new Clientes();
             int dnint=Integer.valueOf(Alta_Cliente.txt_dni.getText());
             clientes.setDni(dnint);
@@ -285,7 +263,6 @@ public class Alta_Mascota extends javax.swing.JFrame {
             mascotas.setSexo(txt_sexo.getSelectedItem().toString());
             int edadint=Integer.valueOf(txt_edad.getValue().toString());
             mascotas.setEdad(edadint);
-            mascotas.setID_historia(ID_historia);
             
             MascotasDAO mascotasDAO=new MascotasDAO();
             ClientesDAO clientesDAO=new ClientesDAO();
@@ -295,11 +272,7 @@ public class Alta_Mascota extends javax.swing.JFrame {
             Menu_Cliente menu_Cliente=new Menu_Cliente();
             menu_Cliente.setVisible(true);
             this.setVisible(false);
-            
-            
-        } catch (Exception e) {
-        }
-        
+
 
         
         

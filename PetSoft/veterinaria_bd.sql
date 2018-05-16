@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               5.5.24-log - MySQL Community Server (GPL)
--- Server OS:                    Win32
--- HeidiSQL Version:             9.5.0.5196
+-- Versión del servidor:         5.5.8-log - MySQL Community Server (GPL)
+-- SO del servidor:              Win32
+-- HeidiSQL Versión:             9.4.0.5125
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -12,11 +12,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Dumping database structure for veterinaria_bd
+-- Volcando estructura de base de datos para veterinaria_bd
 CREATE DATABASE IF NOT EXISTS `veterinaria_bd` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `veterinaria_bd`;
 
--- Dumping structure for table veterinaria_bd.clientes
+-- Volcando estructura para tabla veterinaria_bd.clientes
 CREATE TABLE IF NOT EXISTS `clientes` (
   `Dni` int(8) NOT NULL,
   `NomyApe` varchar(50) NOT NULL,
@@ -27,12 +27,13 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   PRIMARY KEY (`Dni`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table veterinaria_bd.clientes: ~2 rows (approximately)
+-- Volcando datos para la tabla veterinaria_bd.clientes: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-
+INSERT INTO `clientes` (`Dni`, `NomyApe`, `Fecha_nac`, `Ciudad`, `Domicilio`, `Telefono`) VALUES
+	(40714396, 'mariano flores', '24/10/1997', 'la plata', '120 y 65', '4253165');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 
--- Dumping structure for table veterinaria_bd.cuentas
+-- Volcando estructura para tabla veterinaria_bd.cuentas
 CREATE TABLE IF NOT EXISTS `cuentas` (
   `Usuario` varchar(50) NOT NULL,
   `Contraseña` varchar(50) NOT NULL,
@@ -41,23 +42,13 @@ CREATE TABLE IF NOT EXISTS `cuentas` (
   PRIMARY KEY (`Usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table veterinaria_bd.cuentas: ~1 rows (approximately)
+-- Volcando datos para la tabla veterinaria_bd.cuentas: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `cuentas` DISABLE KEYS */;
 INSERT INTO `cuentas` (`Usuario`, `Contraseña`, `Pregunta_sec`, `Resp_sec`) VALUES
 	('mariano', '1234ya', '¿Segundo Nombre?', 'leandro');
 /*!40000 ALTER TABLE `cuentas` ENABLE KEYS */;
 
--- Dumping structure for table veterinaria_bd.historias
-CREATE TABLE IF NOT EXISTS `historias` (
-  `ID_historia` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`ID_historia`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
-
--- Dumping data for table veterinaria_bd.historias: ~14 rows (approximately)
-/*!40000 ALTER TABLE `historias` DISABLE KEYS */;
-/*!40000 ALTER TABLE `historias` ENABLE KEYS */;
-
--- Dumping structure for table veterinaria_bd.mascotas
+-- Volcando estructura para tabla veterinaria_bd.mascotas
 CREATE TABLE IF NOT EXISTS `mascotas` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Dni` int(8) NOT NULL,
@@ -66,17 +57,15 @@ CREATE TABLE IF NOT EXISTS `mascotas` (
   `Raza` varchar(50) DEFAULT NULL,
   `Sexo` varchar(50) NOT NULL,
   `Edad` int(11) NOT NULL,
-  `ID_historia` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `ID_historia` (`ID_historia`),
-  CONSTRAINT `ID_historia` FOREIGN KEY (`ID_historia`) REFERENCES `historias` (`ID_historia`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table veterinaria_bd.mascotas: ~0 rows (approximately)
+-- Volcando datos para la tabla veterinaria_bd.mascotas: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `mascotas` DISABLE KEYS */;
+INSERT INTO `mascotas` (`ID`, `Dni`, `Nombre`, `Especie`, `Raza`, `Sexo`, `Edad`) VALUES
+	(3, 40714396, 'Java', 'Gato', 'Siames', 'Macho', 1);
 /*!40000 ALTER TABLE `mascotas` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-cuentas

@@ -59,7 +59,6 @@ public class ClientesDAO {
 
             sesion.close();
         }
-  
 
     }
     public void eliminarCliente(Clientes cliente) throws HibernateException
@@ -84,6 +83,8 @@ public class ClientesDAO {
         }
 
     }
+    
+ 
    
 
 

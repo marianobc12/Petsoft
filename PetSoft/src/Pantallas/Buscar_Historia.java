@@ -48,9 +48,9 @@ public class Buscar_Historia extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 40)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Buscar cliente");
+        jLabel2.setText("Buscar Historia Clínica");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(50, 10, 260, 46);
+        jLabel2.setBounds(50, 10, 420, 46);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));

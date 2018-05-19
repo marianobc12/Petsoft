@@ -130,13 +130,15 @@ public class Buscar_Historia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Menu_Cliente menu_Cliente=new Menu_Cliente();
-        menu_Cliente.setVisible(true);
+        Historia_clinica historia_clinica=new Historia_clinica();
+        historia_clinica.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        Menu_Principal menu_Principal=new Menu_Principal();
+        menu_Principal.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**

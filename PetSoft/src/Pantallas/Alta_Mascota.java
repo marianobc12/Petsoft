@@ -218,7 +218,7 @@ public class Alta_Mascota extends javax.swing.JFrame {
         txt_dueño.setBounds(210, 90, 310, 20);
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo3.jpg"))); // NOI18N
         jPanel1.add(jLabel7);
         jLabel7.setBounds(0, -6, 740, 480);
 

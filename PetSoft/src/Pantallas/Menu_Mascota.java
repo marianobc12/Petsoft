@@ -92,7 +92,7 @@ public class Menu_Mascota extends javax.swing.JFrame {
         jPanel1.add(jButton6);
         jButton6.setBounds(220, 390, 280, 80);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo3.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(-7, -6, 730, 540);
 

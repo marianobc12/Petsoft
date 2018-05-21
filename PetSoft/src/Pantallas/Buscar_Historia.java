@@ -110,7 +110,7 @@ public class Buscar_Historia extends javax.swing.JFrame {
         jPanel1.add(jButton5);
         jButton5.setBounds(120, 240, 130, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo3.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 523, 300);
 

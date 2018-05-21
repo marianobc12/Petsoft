@@ -101,6 +101,11 @@ public class Menu_Principal extends javax.swing.JFrame {
         bt_historiaclinica.setText("2:Historia clinica");
         bt_historiaclinica.setBorder(null);
         bt_historiaclinica.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bt_historiaclinica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_historiaclinicaActionPerformed(evt);
+            }
+        });
         jPanel2.add(bt_historiaclinica);
         bt_historiaclinica.setBounds(410, 130, 250, 130);
 
@@ -110,7 +115,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         jPanel2.add(jLabel1);
         jLabel1.setBounds(310, 30, 150, 69);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo3.jpg"))); // NOI18N
         jPanel2.add(jLabel2);
         jLabel2.setBounds(0, 0, 820, 530);
 
@@ -144,6 +149,12 @@ public class Menu_Principal extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
     }//GEN-LAST:event_formWindowOpened
+
+    private void bt_historiaclinicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_historiaclinicaActionPerformed
+        Buscar_Historia buscar_Historia=new Buscar_Historia();
+        buscar_Historia.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_bt_historiaclinicaActionPerformed
 
     /**
      * @param args the command line arguments

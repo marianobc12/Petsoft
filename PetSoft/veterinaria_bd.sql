@@ -16,6 +16,25 @@
 CREATE DATABASE IF NOT EXISTS `veterinaria_bd` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `veterinaria_bd`;
 
+-- Volcando estructura para tabla veterinaria_bd.atenciones
+CREATE TABLE IF NOT EXISTS `atenciones` (
+  `ID_atenciones` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_mascota` int(11) NOT NULL,
+  `Fecha_atencion` date NOT NULL,
+  `Hora_atencion` time NOT NULL,
+  `Diagnostico` varchar(100) NOT NULL,
+  `Observaciones` longtext NOT NULL,
+  PRIMARY KEY (`ID_atenciones`),
+  KEY `ID_mascota` (`ID_mascota`),
+  CONSTRAINT `ID_mascota` FOREIGN KEY (`ID_mascota`) REFERENCES `mascotas` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='guarda todas la atenciones de una mascota';
+
+-- Volcando datos para la tabla veterinaria_bd.atenciones: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `atenciones` DISABLE KEYS */;
+INSERT INTO `atenciones` (`ID_atenciones`, `ID_mascota`, `Fecha_atencion`, `Hora_atencion`, `Diagnostico`, `Observaciones`) VALUES
+	(1, 4, '2018-05-18', '19:00:00', 'Lesion en la pierna', 'Lesion en la pierna con  3 dias pasado el accidente');
+/*!40000 ALTER TABLE `atenciones` ENABLE KEYS */;
+
 -- Volcando estructura para tabla veterinaria_bd.clientes
 CREATE TABLE IF NOT EXISTS `clientes` (
   `Dni` int(8) NOT NULL,
@@ -58,12 +77,13 @@ CREATE TABLE IF NOT EXISTS `mascotas` (
   `Sexo` varchar(50) NOT NULL,
   `Edad` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla veterinaria_bd.mascotas: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla veterinaria_bd.mascotas: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `mascotas` DISABLE KEYS */;
 INSERT INTO `mascotas` (`ID`, `Dni`, `Nombre`, `Especie`, `Raza`, `Sexo`, `Edad`) VALUES
-	(3, 40714396, 'Java', 'Gato', 'Siames', 'Macho', 1);
+	(3, 40714396, 'Java', 'Gato', 'Siames', 'Macho', 1),
+	(4, 40714396, 'Pepe', 'Perro', 'Bulldog', 'Macho', 10);
 /*!40000 ALTER TABLE `mascotas` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -28,6 +28,8 @@ public class Datos_Clientes extends javax.swing.JFrame {
         initComponents();
         ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
         timer.scheduleAtFixedRate(SeleccionarMascota, 1, 1, TimeUnit.MICROSECONDS);
+        DeshabilitarCamposMascota();
+        panel_mascota.setOpaque(false);
     }
 
       final Runnable SeleccionarMascota = new Runnable() {
@@ -44,11 +46,11 @@ public class Datos_Clientes extends javax.swing.JFrame {
                 PreparedStatement stmt=link.prepareStatement("SELECT * FROM mascotas WHERE Dni='"+dni+"' AND Nombre='"+mascota+"'");
                 ResultSet rs=stmt.executeQuery();
                 while (rs.next()) {                    
-                    nombre_tx.setText(rs.getString("Nombre"));
-                    especie_tx.setText(rs.getString("Especie"));
-                    raza_tx.setText(rs.getString("Raza"));
-                    sexo_tx.setText(rs.getString("Sexo"));
-                    edad_tx.setText(rs.getString("Edad"));
+                    lb_nombre.setText(rs.getString("Nombre"));
+                    lb_especie.setText(rs.getString("Especie"));
+                    lb_raza.setText(rs.getString("Raza"));
+                    lb_sexo.setText(rs.getString("Sexo"));
+                    lb_edad.setText(rs.getString("Edad"));
                 }
                 
                 } catch (Exception e) {
@@ -94,7 +96,10 @@ public class Datos_Clientes extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-    
+    public void OcultarbotonesMascota(){
+        bt_cancelar_m.setVisible(false);
+        bt_guardar_m.setVisible(false);      
+    }
     public void Ocultarbotones(){
         bt_cancelar_c.setVisible(false);
         bt_guardar_c.setVisible(false);
@@ -122,6 +127,32 @@ public class Datos_Clientes extends javax.swing.JFrame {
         telefono_tx.setEnabled(true);
         
     }
+    public void HabiliarCamposMascota(){
+        nombre_tx.setVisible(true);
+        especie_tx.setVisible(true);
+        raza_tx.setVisible(true);
+        sexo_tx.setVisible(true);
+        edad_tx.setVisible(true); 
+        lb_nombre.setVisible(false);
+        lb_especie.setVisible(false);
+        lb_raza.setVisible(false);
+        lb_sexo.setVisible(false);
+        lb_edad.setVisible(false);
+    }
+    
+    public void DeshabilitarCamposMascota(){
+        nombre_tx.setVisible(false);
+        especie_tx.setVisible(false);
+        raza_tx.setVisible(false);
+        sexo_tx.setVisible(false);
+        edad_tx.setVisible(false);
+        lb_nombre.setVisible(true);
+        lb_especie.setVisible(true);
+        lb_raza.setVisible(true);
+        lb_sexo.setVisible(true);
+        lb_edad.setVisible(true);
+    }
+    
     public void Ocultarpanelmascota(){
         panel_mascota.setVisible(false);
     }
@@ -160,15 +191,21 @@ public class Datos_Clientes extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        bt_guardar_m = new javax.swing.JButton();
-        bt_cancelar_m = new javax.swing.JButton();
-        bt_eliminar_m = new javax.swing.JButton();
         bt_modificar_m = new javax.swing.JButton();
+        bt_guardar_m = new javax.swing.JButton();
+        bt_eliminar_m = new javax.swing.JButton();
+        bt_cancelar_m = new javax.swing.JButton();
         especie_tx = new javax.swing.JTextField();
         raza_tx = new javax.swing.JTextField();
         sexo_tx = new javax.swing.JTextField();
         edad_tx = new javax.swing.JTextField();
         nombre_tx = new javax.swing.JTextField();
+        lb_edad = new javax.swing.JLabel();
+        lb_especie = new javax.swing.JLabel();
+        lb_raza = new javax.swing.JLabel();
+        lb_sexo = new javax.swing.JLabel();
+        lb_nombre = new javax.swing.JLabel();
+        bt_volver = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -188,57 +225,63 @@ public class Datos_Clientes extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Datos de mascota");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(450, 30, 320, 46);
+        jLabel2.setBounds(450, 40, 320, 46);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("D.N.I");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(40, 100, 30, 17);
+        jLabel1.setBounds(40, 110, 30, 17);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Domicilio");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(40, 290, 60, 17);
+        jLabel3.setBounds(40, 300, 60, 17);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nombre y apellido");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(40, 150, 120, 17);
+        jLabel4.setBounds(40, 160, 120, 17);
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Fecha de Nacimiento");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(40, 190, 140, 17);
+        jLabel6.setBounds(40, 200, 140, 17);
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Teléfono");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(40, 340, 60, 17);
+        jLabel7.setBounds(40, 350, 60, 17);
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Ciudad");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(40, 240, 50, 17);
+        jLabel8.setBounds(40, 250, 50, 17);
 
-        bt_eliminar_c.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        bt_eliminar_c.setBackground(new java.awt.Color(0, 0, 0));
+        bt_eliminar_c.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        bt_eliminar_c.setForeground(new java.awt.Color(255, 255, 255));
         bt_eliminar_c.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar.png"))); // NOI18N
         bt_eliminar_c.setText("Eliminar");
         jPanel1.add(bt_eliminar_c);
-        bt_eliminar_c.setBounds(90, 400, 120, 40);
+        bt_eliminar_c.setBounds(90, 410, 120, 40);
 
-        bt_guardar_c.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        bt_guardar_c.setBackground(new java.awt.Color(0, 0, 0));
+        bt_guardar_c.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        bt_guardar_c.setForeground(new java.awt.Color(255, 255, 255));
         bt_guardar_c.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar.png"))); // NOI18N
         bt_guardar_c.setText("Guardar");
         jPanel1.add(bt_guardar_c);
-        bt_guardar_c.setBounds(230, 400, 120, 40);
+        bt_guardar_c.setBounds(230, 410, 120, 40);
 
-        bt_cancelar_c.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        bt_cancelar_c.setBackground(new java.awt.Color(0, 0, 0));
+        bt_cancelar_c.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        bt_cancelar_c.setForeground(new java.awt.Color(255, 255, 255));
         bt_cancelar_c.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cancelar cliente.png"))); // NOI18N
         bt_cancelar_c.setText("Cancelar");
         bt_cancelar_c.addActionListener(new java.awt.event.ActionListener() {
@@ -247,9 +290,11 @@ public class Datos_Clientes extends javax.swing.JFrame {
             }
         });
         jPanel1.add(bt_cancelar_c);
-        bt_cancelar_c.setBounds(90, 400, 120, 40);
+        bt_cancelar_c.setBounds(90, 410, 120, 40);
 
-        bt_modificar_c.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        bt_modificar_c.setBackground(new java.awt.Color(0, 0, 0));
+        bt_modificar_c.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        bt_modificar_c.setForeground(new java.awt.Color(255, 255, 255));
         bt_modificar_c.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modificar.png"))); // NOI18N
         bt_modificar_c.setText("Modificar");
         bt_modificar_c.addActionListener(new java.awt.event.ActionListener() {
@@ -258,44 +303,44 @@ public class Datos_Clientes extends javax.swing.JFrame {
             }
         });
         jPanel1.add(bt_modificar_c);
-        bt_modificar_c.setBounds(230, 400, 120, 40);
+        bt_modificar_c.setBounds(230, 410, 120, 40);
 
         jLabel9.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 40)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Datos de cliente");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(40, 30, 290, 46);
+        jLabel9.setBounds(40, 40, 290, 46);
 
         select_mascota.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         select_mascota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buscar mascota" }));
         select_mascota.setToolTipText("");
         jPanel1.add(select_mascota);
-        select_mascota.setBounds(450, 120, 320, 40);
+        select_mascota.setBounds(450, 130, 320, 40);
 
         ciudad_tx.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         ciudad_tx.setEnabled(false);
         jPanel1.add(ciudad_tx);
-        ciudad_tx.setBounds(180, 230, 150, 30);
+        ciudad_tx.setBounds(180, 240, 150, 30);
 
         dni_tx.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         dni_tx.setEnabled(false);
         jPanel1.add(dni_tx);
-        dni_tx.setBounds(180, 90, 150, 30);
+        dni_tx.setBounds(180, 100, 150, 30);
 
         domicilio_tx.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         domicilio_tx.setEnabled(false);
         jPanel1.add(domicilio_tx);
-        domicilio_tx.setBounds(180, 280, 150, 30);
+        domicilio_tx.setBounds(180, 290, 150, 30);
 
         telefono_tx.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         telefono_tx.setEnabled(false);
         jPanel1.add(telefono_tx);
-        telefono_tx.setBounds(180, 330, 150, 30);
+        telefono_tx.setBounds(180, 340, 150, 30);
 
         nomyape_tx.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         nomyape_tx.setEnabled(false);
         jPanel1.add(nomyape_tx);
-        nomyape_tx.setBounds(180, 140, 150, 30);
+        nomyape_tx.setBounds(180, 150, 150, 30);
 
         dia_tx.setBackground(new java.awt.Color(204, 204, 204));
         dia_tx.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -308,7 +353,7 @@ public class Datos_Clientes extends javax.swing.JFrame {
             }
         });
         jPanel1.add(dia_tx);
-        dia_tx.setBounds(180, 180, 50, 40);
+        dia_tx.setBounds(180, 190, 50, 40);
 
         mes_tx.setBackground(new java.awt.Color(204, 204, 204));
         mes_tx.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -321,7 +366,7 @@ public class Datos_Clientes extends javax.swing.JFrame {
             }
         });
         jPanel1.add(mes_tx);
-        mes_tx.setBounds(240, 180, 50, 40);
+        mes_tx.setBounds(240, 190, 50, 40);
 
         año_tx.setBackground(new java.awt.Color(204, 204, 204));
         año_tx.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -338,64 +383,87 @@ public class Datos_Clientes extends javax.swing.JFrame {
             }
         });
         jPanel1.add(año_tx);
-        año_tx.setBounds(300, 180, 90, 40);
+        año_tx.setBounds(300, 190, 90, 40);
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Selecciona una mascota");
         jPanel1.add(jLabel15);
-        jLabel15.setBounds(450, 90, 160, 17);
+        jLabel15.setBounds(450, 100, 160, 17);
 
         panel_mascota.setLayout(null);
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Edad");
         panel_mascota.add(jLabel10);
-        jLabel10.setBounds(0, 170, 33, 17);
+        jLabel10.setBounds(0, 160, 40, 30);
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Nombre");
         panel_mascota.add(jLabel11);
-        jLabel11.setBounds(0, 10, 50, 17);
+        jLabel11.setBounds(0, 0, 50, 30);
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Especie");
         panel_mascota.add(jLabel12);
-        jLabel12.setBounds(0, 50, 50, 17);
+        jLabel12.setBounds(0, 40, 50, 30);
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Raza");
         panel_mascota.add(jLabel13);
-        jLabel13.setBounds(0, 90, 40, 17);
+        jLabel13.setBounds(0, 80, 40, 30);
 
         jLabel14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Sexo");
         panel_mascota.add(jLabel14);
-        jLabel14.setBounds(0, 130, 40, 17);
+        jLabel14.setBounds(0, 120, 40, 30);
 
-        bt_guardar_m.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        bt_modificar_m.setBackground(new java.awt.Color(0, 0, 0));
+        bt_modificar_m.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        bt_modificar_m.setForeground(new java.awt.Color(255, 255, 255));
+        bt_modificar_m.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modificar.png"))); // NOI18N
+        bt_modificar_m.setText("Modificar");
+        bt_modificar_m.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_modificar_mActionPerformed(evt);
+            }
+        });
+        panel_mascota.add(bt_modificar_m);
+        bt_modificar_m.setBounds(170, 230, 120, 40);
+
+        bt_guardar_m.setBackground(new java.awt.Color(0, 0, 0));
+        bt_guardar_m.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        bt_guardar_m.setForeground(new java.awt.Color(255, 255, 255));
         bt_guardar_m.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar.png"))); // NOI18N
         bt_guardar_m.setText("Guardar");
         panel_mascota.add(bt_guardar_m);
-        bt_guardar_m.setBounds(170, 250, 120, 40);
+        bt_guardar_m.setBounds(170, 230, 120, 40);
 
-        bt_cancelar_m.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        bt_cancelar_m.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cancelar cliente.png"))); // NOI18N
-        bt_cancelar_m.setText("Cancelar");
-        panel_mascota.add(bt_cancelar_m);
-        bt_cancelar_m.setBounds(20, 250, 120, 40);
-
-        bt_eliminar_m.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        bt_eliminar_m.setBackground(new java.awt.Color(0, 0, 0));
+        bt_eliminar_m.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        bt_eliminar_m.setForeground(new java.awt.Color(255, 255, 255));
         bt_eliminar_m.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar.png"))); // NOI18N
         bt_eliminar_m.setText("Eliminar");
         panel_mascota.add(bt_eliminar_m);
-        bt_eliminar_m.setBounds(170, 200, 120, 40);
+        bt_eliminar_m.setBounds(20, 230, 120, 40);
 
-        bt_modificar_m.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        bt_modificar_m.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modificar.png"))); // NOI18N
-        bt_modificar_m.setText("Modificar");
-        panel_mascota.add(bt_modificar_m);
-        bt_modificar_m.setBounds(20, 200, 120, 40);
+        bt_cancelar_m.setBackground(new java.awt.Color(0, 0, 0));
+        bt_cancelar_m.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        bt_cancelar_m.setForeground(new java.awt.Color(255, 255, 255));
+        bt_cancelar_m.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cancelar cliente.png"))); // NOI18N
+        bt_cancelar_m.setText("Cancelar");
+        bt_cancelar_m.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_cancelar_mActionPerformed(evt);
+            }
+        });
+        panel_mascota.add(bt_cancelar_m);
+        bt_cancelar_m.setBounds(20, 230, 120, 40);
 
         especie_tx.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         panel_mascota.add(especie_tx);
@@ -417,12 +485,50 @@ public class Datos_Clientes extends javax.swing.JFrame {
         panel_mascota.add(nombre_tx);
         nombre_tx.setBounds(60, 0, 150, 30);
 
+        lb_edad.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lb_edad.setForeground(new java.awt.Color(255, 255, 255));
+        panel_mascota.add(lb_edad);
+        lb_edad.setBounds(60, 160, 150, 30);
+
+        lb_especie.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lb_especie.setForeground(new java.awt.Color(255, 255, 255));
+        panel_mascota.add(lb_especie);
+        lb_especie.setBounds(60, 40, 150, 30);
+
+        lb_raza.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lb_raza.setForeground(new java.awt.Color(255, 255, 255));
+        panel_mascota.add(lb_raza);
+        lb_raza.setBounds(60, 80, 150, 30);
+
+        lb_sexo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lb_sexo.setForeground(new java.awt.Color(255, 255, 255));
+        panel_mascota.add(lb_sexo);
+        lb_sexo.setBounds(60, 120, 150, 30);
+
+        lb_nombre.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lb_nombre.setForeground(new java.awt.Color(255, 255, 255));
+        panel_mascota.add(lb_nombre);
+        lb_nombre.setBounds(60, 0, 150, 30);
+
         jPanel1.add(panel_mascota);
-        panel_mascota.setBounds(450, 180, 320, 290);
+        panel_mascota.setBounds(450, 180, 320, 270);
+
+        bt_volver.setBackground(new java.awt.Color(0, 0, 0));
+        bt_volver.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        bt_volver.setForeground(new java.awt.Color(255, 255, 255));
+        bt_volver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/volver.png"))); // NOI18N
+        bt_volver.setText("Volver");
+        bt_volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_volverActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bt_volver);
+        bt_volver.setBounds(340, 480, 120, 40);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo3.jpg"))); // NOI18N
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(0, -10, 830, 500);
+        jLabel5.setBounds(0, -10, 830, 550);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -432,7 +538,7 @@ public class Datos_Clientes extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
         );
 
         pack();
@@ -459,6 +565,7 @@ public class Datos_Clientes extends javax.swing.JFrame {
         Mostrardatoscliente();
         Traermascostas();
         Ocultarbotones();
+        OcultarbotonesMascota();
     }//GEN-LAST:event_formWindowOpened
 
     private void bt_modificar_cActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_modificar_cActionPerformed
@@ -476,6 +583,30 @@ public class Datos_Clientes extends javax.swing.JFrame {
         bt_modificar_c.setVisible(true);
         Deshabilitarcampos();
     }//GEN-LAST:event_bt_cancelar_cActionPerformed
+
+    private void bt_modificar_mActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_modificar_mActionPerformed
+        bt_cancelar_m.setVisible(true);
+        bt_guardar_m.setVisible(true);
+        bt_eliminar_m.setVisible(false);
+        bt_modificar_m.setVisible(false);
+        select_mascota.setEnabled(false);
+        HabiliarCamposMascota();
+    }//GEN-LAST:event_bt_modificar_mActionPerformed
+
+    private void bt_cancelar_mActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cancelar_mActionPerformed
+        bt_cancelar_m.setVisible(false);
+        bt_guardar_m.setVisible(false);
+        bt_eliminar_m.setVisible(true);
+        bt_modificar_m.setVisible(true);
+        select_mascota.setEnabled(true);
+        DeshabilitarCamposMascota();
+    }//GEN-LAST:event_bt_cancelar_mActionPerformed
+
+    private void bt_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_volverActionPerformed
+        Menu_Cliente menu_Cliente=new Menu_Cliente();
+        menu_Cliente.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_bt_volverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -522,6 +653,7 @@ public class Datos_Clientes extends javax.swing.JFrame {
     private javax.swing.JButton bt_guardar_m;
     private javax.swing.JButton bt_modificar_c;
     private javax.swing.JButton bt_modificar_m;
+    private javax.swing.JButton bt_volver;
     private javax.swing.JTextField ciudad_tx;
     public static javax.swing.JComboBox<String> dia_tx;
     private javax.swing.JTextField dni_tx;
@@ -544,6 +676,11 @@ public class Datos_Clientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lb_edad;
+    private javax.swing.JLabel lb_especie;
+    private javax.swing.JLabel lb_nombre;
+    private javax.swing.JLabel lb_raza;
+    private javax.swing.JLabel lb_sexo;
     public static javax.swing.JComboBox<String> mes_tx;
     private javax.swing.JTextField nombre_tx;
     private javax.swing.JTextField nomyape_tx;

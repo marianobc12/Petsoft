@@ -205,6 +205,9 @@ public class Recuperar_Cuenta extends javax.swing.JFrame {
                     lb_mal2.setVisible(false);
                     lb_bien2.setVisible(true);
                     JOptionPane.showMessageDialog(null, "Su contraseña es: "+passbd);
+                    Inicio inicio=new Inicio();
+                    inicio.setVisible(true);
+                    this.setVisible(false);
                     
                 }else{
                     if (respuesta.equals("")) {

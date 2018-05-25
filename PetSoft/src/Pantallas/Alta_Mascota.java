@@ -17,6 +17,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 /**
  *
  * @author Flores
@@ -85,7 +86,6 @@ public class Alta_Mascota extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Alta de mascota - MuthanDevs");
-        setMaximumSize(new java.awt.Dimension(732, 471));
         setMinimumSize(new java.awt.Dimension(732, 471));
         setSize(new java.awt.Dimension(732, 471));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -148,7 +148,7 @@ public class Alta_Mascota extends javax.swing.JFrame {
 
         txt_especie.setBackground(new java.awt.Color(204, 204, 204));
         txt_especie.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txt_especie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Perro", "Gato", "Pajaro", "Roedor", "Conejo", "Caballo", "Otros" }));
+        txt_especie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Perro", "Gato", "Caballo", "Conejo", "Pajaro", "Roedor", "Otros" }));
         jPanel1.add(txt_especie);
         txt_especie.setBounds(140, 210, 140, 40);
 
@@ -268,6 +268,8 @@ public class Alta_Mascota extends javax.swing.JFrame {
             ClientesDAO clientesDAO=new ClientesDAO();
             clientesDAO.guardaCliente(clientes);
             mascotasDAO.guardaMascota(mascotas);
+            
+            JOptionPane.showMessageDialog(null,"¡El cliente fue guardado!", "Aviso", INFORMATION_MESSAGE);
             
             Menu_Cliente menu_Cliente=new Menu_Cliente();
             menu_Cliente.setVisible(true);

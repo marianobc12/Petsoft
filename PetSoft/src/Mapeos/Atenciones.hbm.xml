@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="Clases.Atenciones" table="atenciones" >
+      <id name="ID_atenciones" type="integer"/>
+      <property name="ID_mascota" />
+      <property name="Fecha_atencion" />
+      <property name="Hora_atencion" />
+      <property name="Diagnostico" />
+      <property name="Observaciones" />
+    </class>
+</hibernate-mapping>

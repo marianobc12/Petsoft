@@ -50,5 +50,6 @@ Contributor(s):
     <mapping resource="Mapeos/Cuentas.hbm.xml"/>
     <mapping resource="Mapeos/Clientes.hbm.xml"/>
     <mapping resource="Mapeos/Mascotas.hbm.xml"/>
+    <mapping resource="Mapeos/Atenciones.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,6 +31,8 @@ public class Datos_Clientes extends javax.swing.JFrame {
      */
     public Datos_Clientes() {
         initComponents();
+        Ocultarbotones();
+        OcultarbotonesMascota();
         ScheduledExecutorService timer = Executors.newSingleThreadScheduledExecutor();
         timer.scheduleAtFixedRate(SeleccionarMascota, 1, 1, TimeUnit.MICROSECONDS);
         DeshabilitarCamposMascota();
@@ -179,7 +182,9 @@ public class Datos_Clientes extends javax.swing.JFrame {
         String mascota=select_mascota.getSelectedItem().toString();
         String dni = dni_tx.getText();
         System.out.println(mascota+" "+dni);
-        try {
+        int elimacionconfirm = JOptionPane.showConfirmDialog(null, "Si elimina la mascota ,también se eliminará su historia clinica. ¿Está seguro?", "Aviso",JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+        if (elimacionconfirm==JOptionPane.YES_OPTION) {
+            try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection link = DriverManager.getConnection("jdbc:mysql://localhost/veterinaria_bd","root","root");
             PreparedStatement stmt=link.prepareStatement("SELECT ID FROM mascotas WHERE Dni='"+dni+"' AND Nombre='"+mascota+"'");
@@ -191,16 +196,20 @@ public class Datos_Clientes extends javax.swing.JFrame {
                mascotas.setID(rs.getInt("ID"));
                System.out.println(mascotas.getID());
             }
-            /* ELIMINACION DE ATENCIONES CON HIBERNATE! FALTA HACER! */
+            
             stmt=link.prepareStatement("DELETE FROM atenciones WHERE ID_mascota='"+IdMascota+"'");
             stmt.execute();
             
             
             MascotasDAO mascotasDAO=new MascotasDAO();
             mascotasDAO.eliminarMascota(mascotas);
-        } catch (Exception e) {
-        }
-        
+            JOptionPane.showMessageDialog(null, "¡Mascota eliminada!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            Menu_Cliente menu_Cliente=new Menu_Cliente();
+            menu_Cliente.setVisible(true);
+            this.setVisible(false);
+            } catch (Exception e) {
+            }
+        } 
     }
     
     public void OcultarbotonesMascota(){
@@ -695,8 +704,6 @@ public class Datos_Clientes extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Mostrardatoscliente();
         Traermascostas();
-        Ocultarbotones();
-        OcultarbotonesMascota();
     }//GEN-LAST:event_formWindowOpened
 
     private void bt_modificar_cActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_modificar_cActionPerformed

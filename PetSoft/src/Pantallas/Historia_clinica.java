@@ -5,6 +5,12 @@
  */
 package Pantallas;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author martinc
@@ -16,7 +22,43 @@ public class Historia_clinica extends javax.swing.JFrame {
      */
     public Historia_clinica() {
         initComponents();
+        TraerDatosMascotaYAtenciones();
     }
+    
+    
+    public void TraerDatosMascotaYAtenciones(){
+        try {
+            String dni=Buscar_Historia.dni_tx.getText();
+            String mascota=Buscar_Historia.mascota_tx.getSelectedItem().toString();
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection link = DriverManager.getConnection("jdbc:mysql://localhost/veterinaria_bd","root","root");
+            PreparedStatement stmt=link.prepareStatement("SELECT * FROM mascotas WHERE Dni='"+dni+"' AND Nombre='"+mascota+"'");
+            ResultSet rs=stmt.executeQuery();
+            int IdMascota=0;
+            while (rs.next()) {   
+                IdMascota=rs.getInt("ID");
+                infomasc_lb.setText(rs.getString("Nombre")+"  "+rs.getString("Especie")+"  "+rs.getString("Raza")+"  "+rs.getString("Edad")+" años  "+rs.getString("Sexo"));
+            }
+            stmt=link.prepareStatement("SELECT * FROM atenciones WHERE ID_mascota='"+IdMascota+"'");
+            rs=stmt.executeQuery();
+            DefaultTableModel tabla=new DefaultTableModel();
+            tabla.addColumn("Fecha Atención");
+            tabla.addColumn("Hora Atención");
+            tabla.addColumn("Diagnóstico");
+            tabla.addColumn("Observaciones");
+            tabla_atenciones.setModel(tabla);
+            String InfoAtenciones []=new String[4];
+            while (rs.next()) { 
+                InfoAtenciones[0]=rs.getString("Fecha_atencion");
+                InfoAtenciones[1]=rs.getString("Hora_atencion");
+                InfoAtenciones[2]=rs.getString("Diagnostico");
+                InfoAtenciones[3]=rs.getString("Observaciones");
+                tabla.addRow(InfoAtenciones);
+            }
+        } catch (Exception e) {
+        }
+    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,10 +70,10 @@ public class Historia_clinica extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        infomasc_lb = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla_atenciones = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
@@ -39,66 +81,38 @@ public class Historia_clinica extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(981, 580));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel2.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Pepito    Perro    Caniche Toy   3 años   Macho");
-        jPanel2.add(jLabel1);
-        jLabel1.setBounds(20, 90, 940, 40);
+        infomasc_lb.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        infomasc_lb.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(infomasc_lb);
+        infomasc_lb.setBounds(20, 140, 500, 40);
 
         jLabel3.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 60)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Historia clínica");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(10, 0, 420, 100);
+        jLabel3.setBounds(20, 10, 650, 100);
 
-        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTable1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Fecha de atención", "Hora atención", "Diagnóstico", "Observaciones"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setIntercellSpacing(new java.awt.Dimension(2, 2));
-        jTable1.setRowHeight(24);
-        jScrollPane1.setViewportView(jTable1);
+        tabla_atenciones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tabla_atenciones.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tabla_atenciones.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
+        tabla_atenciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tabla_atenciones.setIntercellSpacing(new java.awt.Dimension(2, 2));
+        tabla_atenciones.setRowHeight(40);
+        jScrollPane1.setViewportView(tabla_atenciones);
 
         jPanel2.add(jScrollPane1);
         jScrollPane1.setBounds(20, 190, 790, 330);
@@ -125,7 +139,7 @@ public class Historia_clinica extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/volver.png"))); // NOI18N
-        jButton2.setText("Volver");
+        jButton2.setText("Ir al menú");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -152,6 +166,17 @@ public class Historia_clinica extends javax.swing.JFrame {
         jPanel2.add(jButton5);
         jButton5.setBounds(830, 330, 130, 50);
 
+        jButton6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar cliente.png"))); // NOI18N
+        jButton6.setText("Buscar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton6);
+        jButton6.setBounds(830, 400, 130, 50);
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo3.jpg"))); // NOI18N
         jPanel2.add(jLabel2);
         jLabel2.setBounds(0, 0, 980, 550);
@@ -176,10 +201,18 @@ public class Historia_clinica extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         Buscar_Historia buscar_Historia=new Buscar_Historia();
         buscar_Historia.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -217,19 +250,20 @@ public class Historia_clinica extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel infomasc_lb;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTable tabla_atenciones;
     // End of variables declaration//GEN-END:variables
 }
 

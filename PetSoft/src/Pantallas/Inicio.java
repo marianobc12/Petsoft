@@ -186,7 +186,7 @@ public class Inicio extends javax.swing.JFrame {
         hechopor.setBounds(300, 400, 180, 54);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo3.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo6.jpg"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(740, 450));
         jPanel1.add(jLabel1);
         jLabel1.setBounds(-1, -9, 750, 480);
